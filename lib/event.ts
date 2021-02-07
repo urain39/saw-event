@@ -8,9 +8,10 @@ type SAWEventKey = number | string;
 type SAWEventValue = number | string | boolean | null;
 
 /**
+ * 事件对应的回调。返回`false`可以阻止事件往后传播。
  * @param data 事件传递的数据
  */
-export type SAWEventCallback = (data?: any) => any;
+export type SAWEventCallback = (data?: any) => void | boolean;
 
 export class SAWEvent {
     private static _eventValueMap: IMap<SAWEventValue> = {};
@@ -71,7 +72,9 @@ export class SAWEvent {
         if (callbacks) {
             for (const [wantedVaule, callback] of callbacks) {
                 if (wantedVaule === value) {
-                    callback(data);
+                    if (callback(data) === false) {
+                        break;
+                    }
                 }
             }
         }
