@@ -5,7 +5,7 @@ SAW-Event
 
 使用方法
 ```ts
-import { SAWEvent } from './index.ts';
+import { SAWEvent } from './index';
 
 // SAWEvent.on(key, value, callback);
 // SAWEvent.off(key, value, callback);

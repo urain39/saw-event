@@ -60,7 +60,7 @@ export class SAWEvent {
      * @param value 键对应的值
      * @param data 发送给回调的数据
      */
-    public static set(key: SAWEventKey, value: SAWEventValue, data?: any) {
+    public static set(key: SAWEventKey, value: SAWEventValue, data?: any): void {
         const eventValueMap = this._eventValueMap;
 
         eventValueMap[key] = value;
@@ -75,5 +75,13 @@ export class SAWEvent {
                 }
             }
         }
+    }
+
+    /**
+     * 清除所有的记录数据。
+     */
+    public static clear(): void {
+        this._eventCallbackMap = {};
+        this._eventValueMap = {};
     }
 }

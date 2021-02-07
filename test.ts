@@ -66,3 +66,8 @@ SAWEvent.off('wakeUp', false, callback4);
 
 console.log(`Event: Sleep!(send cookie2)`);
 SAWEvent.set('wakeUp', false, `Cookie2`);
+
+console.log(`Event: Clear`);
+SAWEvent.clear();
+
+SAWEvent.set('wakeUp', false, `Cookie2`);
