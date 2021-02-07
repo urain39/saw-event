@@ -78,10 +78,10 @@ export class SAWEvent {
     }
 
     /**
-     * 清除所有的记录数据。
+     * 清除所有记录的数据。
      */
     public static clear(): void {
-        this._eventCallbackMap = {};
         this._eventValueMap = {};
+        this._eventCallbackMap = {};
     }
 }
