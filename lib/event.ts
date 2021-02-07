@@ -66,8 +66,8 @@ export class SAWEvent {
         eventValueMap[key] = value;
 
         const eventCallbackMap = this._eventCallbackMap;
+        const callbacks = eventCallbackMap[key];
 
-        let callbacks = eventCallbackMap[key];
         if (callbacks) {
             for (const [wantedVaule, callback] of callbacks) {
                 if (wantedVaule === value) {
