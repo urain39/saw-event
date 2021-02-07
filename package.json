@@ -1,0 +1,27 @@
+{
+  "name": "saw-event",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/urain39/saw-event.git"
+  },
+  "keywords": [
+    "saw-event",
+    "event",
+    "event-driven"
+  ],
+  "author": "urain39",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/urain39/saw-event/issues"
+  },
+  "homepage": "https://github.com/urain39/saw-event#readme"
+}
