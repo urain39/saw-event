@@ -3,6 +3,8 @@ SAW-Event
 
 一个类似于安卓 RC 脚本的事件处理实现。
 
+如果嫌设置`value`太过复杂，那么也可以试试`simplify`分支。
+
 使用方法
 ```ts
 import { SAWEvent } from './index';

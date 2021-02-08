@@ -3,8 +3,6 @@ type IMap<V> = {
     [key: string]: V;
 };
 
-type SAWAsyncable<FN> = FN extends (...args: infer AT) => infer R ? (...args: AT) => R | Promise<R> : FN;
-
 type SAWEventKey = number | string;
 
 type SAWEventValue = number | string | boolean | null;
@@ -13,7 +11,7 @@ type SAWEventValue = number | string | boolean | null;
  * 事件对应的回调。返回`false`可以阻止事件往后传播。
  * @param data 事件传递的数据
  */
-export type SAWEventCallback = SAWAsyncable<(data?: any) => void | boolean>;
+export type SAWEventCallback = (data?: any) => void | boolean | Promise<void>;
 
 export class SAWEvent {
     private static _eventValueMap: IMap<SAWEventValue> = {};
