@@ -3,6 +3,8 @@ type IMap<V> = {
     [key: string]: V;
 };
 
+type SAWAsyncable<FN> = FN extends (...args: infer AT) => infer R ? (...args: AT) => R | Promise<R> : FN;
+
 type SAWEventKey = number | string;
 
 type SAWEventValue = number | string | boolean | null;
@@ -11,17 +13,18 @@ type SAWEventValue = number | string | boolean | null;
  * 事件对应的回调。返回`false`可以阻止事件往后传播。
  * @param data 事件传递的数据
  */
-export type SAWEventCallback = (data?: any) => void | boolean;
+export type SAWEventCallback = SAWAsyncable<(data?: any) => void | boolean>;
 
 export class SAWEvent {
     private static _eventValueMap: IMap<SAWEventValue> = {};
     private static _eventCallbackMap: IMap<[SAWEventValue, SAWEventCallback][]> = {};
 
     /**
-     * 添加一个事件监听器。
+     * 添加一个事件监听器。注意：我们只是接受异步函数作为参数传入，但是我们
+     * 并不关心异步函数的执行状态与结果。因为异步函数的执行顺序是不可预测的。
      * @param key 监听的键
-     * @param value 想要的值
-     * @param callback 当键对应的值达到想要的值时执行的回调
+     * @param value 希望的值
+     * @param callback 当键对应的值达到希望的值时执行的回调
      */
     public static on(key: SAWEventKey, value: SAWEventValue, callback: SAWEventCallback): void {
         const eventCallbackMap = this._eventCallbackMap;
@@ -37,8 +40,8 @@ export class SAWEvent {
     /**
      * 移除一个事件监听器。
      * @param key 监听的键
-     * @param value 想要的值
-     * @param callback 当键对应的值达到想要的值时执行的回调
+     * @param value 希望的值
+     * @param callback 当键对应的值达到希望的值时执行的回调
      */
     public static off(key: SAWEventKey, value: SAWEventValue, callback: SAWEventCallback): void {
         const eventCallbackMap = this._eventCallbackMap;

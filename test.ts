@@ -70,4 +70,18 @@ SAWEvent.set('wakeUp', false, `Cookie2`);
 console.log(`Event: Clear`);
 SAWEvent.clear();
 
+console.log(`Event: Sleep!`);
 SAWEvent.set('wakeUp', false, `Cookie2`);
+
+
+SAWEvent.on('wakeUp', true, async function (data) {
+    console.log('(Async)Wake Up x1')
+
+    if (data) {
+        console.log(`(Async)Received ${data}`);
+    }
+});
+
+
+console.log(`Event: Wake Up!`);
+SAWEvent.set('wakeUp', true);
